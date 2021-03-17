@@ -1,11 +1,15 @@
 {
   "name": "mern-course",
   "version": "1.0.0",
-  "description": "MERN first project",
-  "main": "index.js",
+  "description": "MERN stack",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Andriy Shendryk",
+  "keywords": [
+    "mern",
+    "react"
+  ],
+  "author": "Andriy Shendryk <avshendrik@gmail.com>",
   "license": "ISC"
 }
