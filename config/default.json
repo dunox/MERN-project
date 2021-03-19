@@ -1,4 +1,5 @@
 {
     "port": 5000,
+    "jwtSecretKey": "andriy mern pro",
     "mongoUri": "mongodb+srv://dunox:Zinya230992@cluster0.doymi.mongodb.net/app?retryWrites=true&w=majority"
 }
