@@ -17,7 +17,6 @@ router.post(
     ],
     async (req, res) => {
     try {
-        console.log('Body', req.body)
         const errors = validationResult(req);
 
         if( !errors.isEmpty() ) {
@@ -39,11 +38,11 @@ router.post(
 
         await user.save();
 
-        res.status(201).json('User successfully created');
+        res.status(201).json({ message: 'User successfully created'});
 
 
     } catch (e) {
-        res.status(200).json({message: "Something went wrong, please try again"});
+        res.status(500).json({message: "Something went wrong, please try again"});
     }
 });
 
@@ -59,7 +58,7 @@ router.post(
 
         const errors = validationResult(req);
 
-        if( !errors.isEmpty ) {
+        if( !errors.isEmpty() ) {
             return res.status(400).json({
                 errors: errors.array(),
                 message: 'Not valid authorization data'

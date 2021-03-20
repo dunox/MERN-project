@@ -5,10 +5,10 @@ import { useMessage } from '../hooks/message.hook';
 export const AuthPage = () => {
     const message = useMessage();
     const { loading, request, error, clearError } = useHttp();
-    const [form, setForm ] = useState({
+    const [ form, setForm ] = useState({
         email: '',
         password: ''
-    })
+    });
 
     useEffect(() => {
         message(error);
@@ -22,7 +22,7 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', {...form});
-            message(data.message);
+            message(data.message)
         } catch (e) {
             
         }
@@ -30,7 +30,7 @@ export const AuthPage = () => {
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/login', 'POST', {...form});
-            message(data.message);
+            message(data.message)
         } catch (e) {
             
         }
