@@ -12,14 +12,15 @@ router.post(
     '/register',
     [
         check('email', 'Email is not valid').isEmail(),
-        check('password', 'Password should contain from 6 to 12 characters').isLength({ min: 6, max: 12 })
+        check('password', 'Password should contain from 6 to 12 characters')
+        .isLength({ min: 6, max: 12 })
     ],
     async (req, res) => {
     try {
-
+        console.log('Body', req.body)
         const errors = validationResult(req);
 
-        if( !errors.isEmpty ) {
+        if( !errors.isEmpty() ) {
             return res.status(400).json({
                 errors: errors.array(),
                 message: 'Not valid register data'
@@ -42,7 +43,7 @@ router.post(
 
 
     } catch (e) {
-        res.status(500).json({message: "Something went wrong, please try again"});
+        res.status(200).json({message: "Something went wrong, please try again"});
     }
 });
 
