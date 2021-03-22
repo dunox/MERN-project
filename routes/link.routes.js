@@ -6,7 +6,7 @@ const auth = require('../middleware/auth.middleware');
 
 const router = Router();
 
-router.post('/generate', async (req, res) => {
+router.post('/generate', auth,  async (req, res) => {
   try {
     const baseUrl = config.get('baseUrl');
     const { from } = req.body;
@@ -18,6 +18,17 @@ router.post('/generate', async (req, res) => {
     if(existing) {
       return res.json({ link: existing});
     }
+
+    const to = baseUrl + '/t/' + code;
+
+    const link = new Link({
+      code, to, from, owner: req.user.userId
+    });
+
+    await link.save();
+
+    res.status(201).json({link: existing});
+
 
   } catch (e) {
     res.status(500).json({message: "Something went wrong, please try again"});
@@ -33,7 +44,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     const link = await Link.findById(req.params.id);
     res.json(link);
